@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Adicionar Item</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center">Adicionar Item ao Cardápio</h1>
+    <form method="POST" action="/menu/additem" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nome do Prato</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Descrição</label>
+        <textarea class="form-control" id="description" name="description" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Preço</label>
+        <input type="number" class="form-control" id="price" name="price" required>
+      </div>
+      <div class="mb-3">
+        <label for="preparationTime" class="form-label">Tempo Médio de Preparo (minutos)</label>
+        <input type="number" class="form-control" id="preparationTime" name="preparationTime" required>
+      </div>
+      <div class="mb-3">
+        <label for="category" class="form-label">Categoria</label>
+        <input type="text" class="form-control" id="category" name="category" required>
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Imagem do Prato</label>
+        <input type="file" class="form-control" id="image" name="image" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Adicionar</button>
+    </form>
+  </div>
+</body>
+</html>
