@@ -7,20 +7,21 @@
 </head>
 <body>
   <div class="container mt-5">
+    <a href="/login" class="btn btn-danger mt-3">Logout</a>
     <h1 class="text-center">Cardápio</h1>
     <ul class="list-group">
       <% menu.forEach(item => { %>
         <li class="list-group-item">
           <div class="row">
             <div class="col-md-8">
-              <h3><%= item.name %></h3>
-              <p><%= item.description %></p>
-              <p>Preço: R$ <%= item.price %></p>
-              <p>Tempo de Preparo: <%= item.preparationTime %> minutos</p>
-              <p>Categoria: <%= item.category %></p>
+              <h3><%= item.nome %></h3>
+              <p><%= item.descricao %></p>
+              <p>Preço: R$ <%= item.preco %></p>
+              <p>Tempo de Preparo: <%= item.tempo %> minutos</p>
+              <p>Categoria: <%= item.categoria %></p>
             </div>
             <div class="col-md-4">
-              <img src="<%= item.image %>" style="max-width: 100%;" class="float-end">
+              <img src="uploads/<%= item.imagem %>" style="max-width: 100%;" class="float-end">
             </div>
           </div>
         </li>

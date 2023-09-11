@@ -1,24 +1,25 @@
-const menuItems = [];
+const { query } = require('./database');
 
-class MenuItem {
-  constructor(name, description, price, preparationTime, category, image) {
-    this.name = name;
-    this.description = description;
-    this.price = price;
-    this.preparationTime = preparationTime;
-    this.category = category;
-    this.image = image;
-  }
+async function addItem(nome, descricao, preco, tempo, categoria, imagem) {
+  const sql = `INSERT INTO cardapio (nome, descricao, preco, tempo, categoria, imagem) VALUES ('${nome}', '${descricao}', '${preco}', '${tempo}', '${categoria}', '${imagem}')`;
+  const values = [nome, descricao, preco, tempo, categoria, imagem];
 
-  static addItem(name, description, price, preparationTime, category, image) {
-    const item = new MenuItem(name, description, price, preparationTime, category, image);
-    menuItems.push(item);
-    return item;
-  }
-
-  static getMenu() {
-    return menuItems;
+  try {
+    return await query(sql, values);
+  } catch (error) {
+    throw new Error('Erro ao adicionar o item ao banco de dados.');
   }
 }
 
-module.exports = MenuItem;
+async function getMenu() {
+  const sql = 'SELECT * FROM cardapio';
+
+  try {
+    const rows = await query(sql);
+    return rows;
+  } catch (error) {
+    throw new Error('Erro ao obter o menu do banco de dados.');
+  }
+}
+
+module.exports = { addItem, getMenu };

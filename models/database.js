@@ -20,7 +20,6 @@ async function query(sql){
     try{
         const [rows] = await conn.execute(sql);
         console.log('Query executada com sucesso');
-        console.log(rows)
         return rows;
     }catch(error){
         console.error('Erro ao executar a query:', error);
