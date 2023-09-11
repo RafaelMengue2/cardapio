@@ -1,21 +1,28 @@
-// models/user.js
-const users = [];
+const { query } = require("./database");
 
-class User {
-  constructor(username, password) {
-    this.username = username;
-    this.password = password;
-  }
-
-  static addUser(username, password) {
-    const user = new User(username, password);
-    users.push(user);
-    return user;
-  }
-
-  static findUser(username) {
-    return users.find(user => user.username === username);
+async function inserirUsuario(username, password) {
+  //const sql = `INSERT INTO usuario (nome, senha) VALUES (${username}, ${password})`;
+  const resp = await query(`INSERT INTO usuario (nome, senha) VALUES ('${username}', '${password}')`);
+  if(resp.insertedRows > 0){
+    console.log("foi inserido");
+  }else{
+    console.log("erro ao cadastrar");
   }
 }
 
-module.exports = User;
+async function findUser(username) {
+
+  const resp = await query(`SELECT * FROM usuario WHERE nome = '${username}'`);
+console.log("esta aqui")
+  console.log(resp[0])
+  if (resp.length > 0){
+    console.log("Usuario foi encontrado");
+    return false;
+  }else{
+    console.log("Usuario nao encontrado")
+    return true;
+  }
+  
+}
+
+module.exports = { inserirUsuario, findUser };

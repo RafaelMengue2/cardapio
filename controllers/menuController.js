@@ -1,12 +1,10 @@
-// controllers/menuController.js
 const MenuItem = require('../models/menu');
 const multer = require('multer');
 const path = require('path');
 
-// Configurar multer para lidar com o upload de imagens
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Pasta onde as imagens serão armazenadas
+    cb(null, 'uploads/'); 
   },
   filename: (req, file, cb) => {
     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
@@ -31,11 +29,10 @@ exports.addItem = (req, res) => {
     }
     
     const { name, description, price, preparationTime, category } = req.body;
-    const image = req.file.filename; // Nome do arquivo de imagem
+    const image = req.file.filename;
 
     const newItem = MenuItem.addItem(name, description, price, preparationTime, category, image);
     
-    // Ensure the newItem is saved properly before redirecting
     if (newItem) {
       res.redirect('/menu');
     } else {

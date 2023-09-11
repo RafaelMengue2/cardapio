@@ -1,4 +1,3 @@
-// models/menu.js
 const menuItems = [];
 
 class MenuItem {
